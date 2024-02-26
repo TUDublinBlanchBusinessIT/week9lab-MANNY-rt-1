@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-    <head> 
-        <meta charset="UTF-8"> 
-        <title>Title TennisClub</title> 
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'> 
-        <!-- Bootstrap 3.3.7 --> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-        <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous"/>
-         
-    </head> 
-    <body > 
-        <nav class="navbar navbar-default navbar-static-top"> 
-            <ul class="nav navbar-nav"> 
-                <li><a href="{{ route('members.index')}}">Members Index</a></li> 
-                <li><a href="{{ route('members.create')}}">Create New Member</a></li>
-                <li><a href="{{ route('bookings.index')}}">Booking List</a></li> 
-            </ul> 
-        </nav> 
-        <div id="page-content-wrapper"> 
-            <div class="container-fluid"> 
-                <div class="row"> 
-                    <div class="col-lg-2"></div> 
-                    <div class="col-lg-8"> @yield('content') </div> 
-                    <div class="col-lg-2"></div> 
-                </div> 
-            </div> 
-         </div> 
-    </body> 
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
+
+            <!-- Page Heading -->
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+    </body>
 </html>
